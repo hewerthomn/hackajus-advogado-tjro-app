@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Envio de Anexos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center ion-padding" *ngIf="!peticao">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="peticao">
+    <ion-list>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Identificação do arquivo</h2>
+          <p>{{ peticao.uuid }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-list>
+    <ion-item-divider>Documentos para anexar</ion-item-divider>
+
+    <ion-item *ngFor="let doc of documentos">
+      <ion-label>
+        <h2>{{ doc.nome }}</h2>
+        <p *ngIf="doc.required">(obrigatório)</p>
+      </ion-label>
+      <ion-button slot="end" color="light">selecionar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Autenticação</ion-card-subtitle>
+    </ion-card-header>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label position="fixed">Senha</ion-label>
+        <ion-input [(ngModel)]="senha" type="password" placeholder="Informe sua senha"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button (click)="assinarProtocolar()" expand="block" [disabled]="!senha">
+        Assinar e Protocolar Processo
+      </ion-button>
+    </div>
+  </ion-card>
+
+
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Advogado TJRO
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Bem vindo Osvaldo.</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Para iniciar, selecione o arquivo PDF com a Petição Inicial e envie!
+      </p>
+      <hr>
+      <ion-input type="file" accept="application/pdf, application/vnd.ms-excel"></ion-input>
+      <hr>
+      <ion-button color="primary" expand="block" (click)="send()">
+        Enviar Petição Inicial
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

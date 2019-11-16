@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informação Processual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center ion-padding" *ngIf="!peticao">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="peticao">
+    <ion-list>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Identificação do arquivo</h2>
+          <p>{{ peticao.uuid }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Classe</h2>
+          <p>{{ peticao.classe.nome }}</p>
+        </ion-label>
+        <ion-button slot="end" color="light">alterar</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Competência</h2>
+          <p>{{ peticao.competencia.nome }}</p>
+        </ion-label>
+        <ion-button slot="end" color="light">alterar</ion-button>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list>
+      <ion-item-divider>
+        <ion-label>Assuntos</ion-label>
+        <ion-button slot="end" color="light">+</ion-button>
+      </ion-item-divider>
+      <ion-item-sliding *ngFor="let assunto of peticao.assuntos">
+        <ion-item-options side="start" *ngIf="!assunto.principal">
+          <ion-item-option color="favorite">
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item>
+          <ion-label class="ion-text-wrap">
+            <p>
+              <ion-icon name="star" *ngIf="assunto.principal" color="favorite"></ion-icon>
+              {{ assunto.nome }}
+            </p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  
+    <ion-list>
+      <ion-item-divider>
+        <ion-label>Polo Ativo</ion-label>
+      </ion-item-divider>
+      <ion-item-group *ngFor="let pa of peticao.partes.poloAtivo">
+        <ion-item>
+          <ion-label position="fixed">Documento</ion-label>
+          <ion-input [value]="pa.doc"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Nome</ion-label>
+          <ion-input [value]="pa.nome"></ion-input>
+        </ion-item>
+        <ion-item class="ion-text-wrap">
+          <ion-label position="fixed">Endereço</ion-label>
+          <ion-input [value]="pa.endereco"></ion-input>
+        </ion-item>
+      </ion-item-group>
+  
+      <ion-item-divider>
+        <ion-label>Polo Passivo</ion-label>
+      </ion-item-divider>
+      <ion-item-group *ngFor="let pp of peticao.partes.poloPassivo">
+        <ion-item>
+          <ion-label position="fixed">Documento</ion-label>
+          <ion-input [value]="pp.doc"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Nome</ion-label>
+          <ion-input [value]="pp.nome"></ion-input>
+        </ion-item>
+        <ion-item class="ion-text-wrap">
+          <ion-label position="fixed">Endereço</ion-label>
+          <ion-input [value]="pp.endereco"></ion-input>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          Li e confirmo os dados detectados automaticamente.
+        </ion-label>
+        <ion-toggle [(ngModel)]="confirmed"></ion-toggle>
+      </ion-item>
+      <div class="ion-padding-horizontal">
+        <ion-button color="primary" expand="block" [disabled]="!confirmed" (click)="send()">
+          Enviar Informação Processual
+        </ion-button>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

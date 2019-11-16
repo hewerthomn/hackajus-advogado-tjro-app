@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Acompanhamento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="testNotification()"><ion-icon name="notifications"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Filtrar processos"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let pro of processos" routerLink="/processo">
+      <ion-label class="ion-text-wrap" >
+        <h2>{{ pro.numero }}</h2>
+        <p>último movimento em </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

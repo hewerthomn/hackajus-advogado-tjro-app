@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Processo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center ion-padding" *ngIf="!processo">
+    <ion-spinner></ion-spinner>
+  </div>
+    
+  <div *ngIf="processo">
+    <ion-list>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Número do Processo</h2>
+          <p>{{ processo.numero }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Órgão Julgador</h2>
+          <p>{{ processo.orgaoJulgador.nome }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Classe</h2>
+          <p>{{ processo.classe.nome }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Competência</h2>
+          <p>{{ processo.competencia.nome }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <h2>Assunto</h2>
+          <p *ngFor="let assunto of processo.assuntos">
+            {{ assunto.nome }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="ion-padding">
+    <ion-button routerLink="/" expand="block">
+      Voltar para Início
+    </ion-button>
+  </div>
+
+</ion-content>

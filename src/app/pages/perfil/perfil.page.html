@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil do Advogado</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="assets/avatar.png" alt="">
+        </ion-avatar>
+        <ion-label>
+          <h2>Osvaldo Junior</h2>
+          <p>OAB 999999-RO</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>Credibilidade</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-icon name="star" color="favorite" slot="start"></ion-icon>
+        <ion-progress-bar value="0.9"></ion-progress-bar>
+        <ion-note slot="end">
+          93
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Pontuação dos últimos processos</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let pro of ultimosProcessos" routerLink="/processo">
+      <ion-label>
+        <h2>{{ pro.numero }}</h2>
+        <p>{{ pro.pontos }}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="block">
+        Ver todos as pontuações
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

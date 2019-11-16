@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Advogado TJRO</string>
+    <string name="title_activity_main">Advogado TJRO</string>
+    <string name="package_name">tempestade.advogado.tjro</string>
+    <string name="custom_url_scheme">tempestade.advogado.tjro</string>
+</resources>
